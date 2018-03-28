@@ -7,6 +7,7 @@ const posterSchema = new Schema({
   username: String,
   firstname: String,
   lastname: String,
+  bio: String,
   posts: [{
     title: String,
     body: String,

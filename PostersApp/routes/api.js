@@ -20,28 +20,37 @@ router.put('/poster/:id', api.updatePoster)
 // Apaga conta do Poster :id
 router.delete('/poster/:id', api.deletePoster)
 
-// Encontra todas as inscrições do Poster :id
-router.get('/poster/:id/subs', api.getSubscriptions)
-
 // Encontra últimos :total posts do Poster :id. 'all' encontra todos.
 router.get('/poster/:id/posts/:total', api.getPosterPosts)
 
+// Busca :query pelo Poster
+router.get('/search/:query', api.searchPoster)
+
+// Encontra todas as inscrições do Poster :id
+router.get('/subs/:id', api.getSubscriptions)
+
+// Inscreve Poster :id no Poster :sub
+router.post('/subs/:id/:sub', api.subscribe)
+
+// Desinscreve Poster :id do Poster :sub
+router.delete('/subs/:id/:sub', api.unsubscribe)
+
 // Faz uma postagem do Poster :id
-router.post('/posts/:id', api.createPost)
+router.post('/post/:id', api.createPost)
 
 // Carrega um post :post do Poster :id
-router.get('/posts/:id/:post', api.readPost)
+router.get('/post/:id/:post', api.readPost)
 
 // Atualiza um post :post do Poster :id
-router.put('/posts/:id/:post', api.updatePost)
+router.put('/post/:id/:post', api.updatePost)
 
 // Apaga um post :post do Poster :id
-router.delete('/posts/:id/:post', api.deletePost)
+router.delete('/post/:id/:post', api.deletePost)
 
 // Carrega todos os posts não sincronizados das inscrições do Poster :id
-router.get('posts/sync/:id', api.syncPosts)
+router.get('/posts/sync/:id', api.syncPosts)
 
 // Carrega todos os posts das inscrições do Poster :id
-router.get('posts/subs/:id', api.getAllPosts)
+router.get('/posts/subs/:id', api.getAllPosts)
 
 module.exports = router

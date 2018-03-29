@@ -9,6 +9,6 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
 
 // Init for testing
-router.get('/dontusemeunlessyouknowwhatyouredoing/init', setup.init)
+router.post('/dontusemeunlessyouknowwhatyouredoing/init', setup.init)
 
 module.exports = router

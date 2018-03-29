@@ -28,8 +28,8 @@ const api = {
 
   // Atualizar informações do Poster :id
   updatePoster: function (req, res, next) {
-    const { phone, username, firstname, lastname, bio, timestamp } = req.body
-    const updated = { phone, username, firstname, lastname, bio, timestamp }
+    const { phone, username, firstname, lastname, bio } = req.body
+    const updated = { phone, username, firstname, lastname, bio }
     Poster.findByIdAndUpdate(req.params.id, updated) // Retorna o objeto antes da modificação
       .then(obj => res.send(obj))
       .catch(next)

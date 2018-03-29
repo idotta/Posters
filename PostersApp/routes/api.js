@@ -20,7 +20,7 @@ router.put('/poster/:id', api.updatePoster)
 // Apaga conta do Poster :id
 router.delete('/poster/:id', api.deletePoster)
 
-// Encontra últimos :total posts do Poster :id. 'all' encontra todos.
+// Encontra últimos :total posts do Poster :id. '0' encontra todos.
 router.get('/poster/:id/posts/:total', api.getPosterPosts)
 
 // Busca :query pelo Poster

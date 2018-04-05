@@ -1,5 +1,6 @@
 var createError = require('http-errors')
 var express = require('express')
+var helmet = require('helmet')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
@@ -14,11 +15,19 @@ var app = express()
 
 // connect to database
 mongoose.connect(config.getDbConnectionString())
+  .then(con => {
+    console.log('mongodb connect success')
+  })
+  .catch(err => {
+    console.log(err)
+    throw err
+  })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
+app.use(helmet())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

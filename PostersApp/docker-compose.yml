@@ -1,0 +1,27 @@
+version: '2.1'
+
+services:
+  posters:
+    image: idotta/posters-app
+    build: .
+    ports:
+      - 3000:3000
+    restart: always
+    links: 
+      - db
+    depends_on: 
+      - db
+
+  db:
+    image: mongo:3.2
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: test
+      MONGO_INITDB_ROOT_PASSWORD: test
+      MONGO_INITDB_DATABASE: posters
+    volumes:
+      - /data/db
+      - /var/lib/mongodb
+      - /var/log/mongodb

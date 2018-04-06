@@ -1,12 +1,8 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 
 const api = require('../controllers/apiController')
 
 const router = express.Router()
-
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ extended: true }))
 
 // Criar Poster
 router.post('/poster', api.createPoster)

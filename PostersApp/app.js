@@ -1,17 +1,17 @@
-var createError = require('http-errors')
-var express = require('express')
-var helmet = require('helmet')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
-var mongoose = require('mongoose')
+const createError = require('http-errors')
+const express = require('express')
+const helmet = require('helmet')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
+const mongoose = require('mongoose')
 
-var config = require('./config')
-var indexRouter = require('./routes/index')
-var apiRouter = require('./routes/api')
-var setupRouter = require('./routes/setup')
+const config = require('./config')
+const indexRouter = require('./routes/index')
+const apiRouter = require('./routes/api')
+const setupRouter = require('./routes/setup')
 
-var app = express()
+const app = express()
 
 // connect to database
 mongoose.connect(config.getDbConnectionString())
@@ -19,8 +19,9 @@ mongoose.connect(config.getDbConnectionString())
     console.log('mongodb connect success')
   })
   .catch(err => {
+    console.log('mongodb connect fail')
     console.log(err)
-    throw err
+    // throw err
   })
 
 // view engine setup

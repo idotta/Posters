@@ -8,16 +8,22 @@ services:
       - 3000:3000
     restart: always
     links: 
-      - db
+      - mongo
+      - redis
     depends_on: 
-      - db
+      - mongo
+      - redis
     volumes:
       - ./:/usr/src/app
       - postersdata:/usr/src/app/node_modules
       - postersdata:/usr/src/app/public
       #- postersdata:/usr/src/app/uploads
+    environment:
+      MONGODB_URI: mongo:27017
+      REDIS_STORE_URI: redis://localhost
+      REDIS_STORE_SECRET: littlesecret
 
-  db:
+  mongo:
     image: mongo:3.2
     restart: always
     ports:
@@ -31,6 +37,15 @@ services:
       - mongodata:/var/lib/mongodb
       - mongodata:/var/log/mongodb
 
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data
+
 volumes:
   postersdata: {}
   mongodata: {}
+  redisdata: {}

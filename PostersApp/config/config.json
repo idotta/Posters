@@ -1,7 +1,0 @@
-{
-    "uname": "test",
-    "pwd": "test",
-    "endpoint_mlab": "ds123399.mlab.com:23399/newsletters",
-    "endpoint_container": "localhost:27017",
-    "endpoint_compose": "mongo:27017"
-}

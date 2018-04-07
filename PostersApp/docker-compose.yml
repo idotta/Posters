@@ -19,6 +19,8 @@ services:
       - postersdata:/usr/src/app/public
       #- postersdata:/usr/src/app/uploads
     environment:
+      MONGODB_UNAME: test
+      MONGODB_PWD: test
       MONGODB_URI: mongo:27017
       REDIS_STORE_URI: redis://localhost
       REDIS_STORE_SECRET: littlesecret

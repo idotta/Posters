@@ -5,10 +5,13 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const mongoose = require('mongoose')
+const session = require('cookie-session')
+const passport = require('passport')
 
 const config = require('./config')
 const indexRouter = require('./routes/index')
 const apiRouter = require('./routes/api')
+const authRouter = require('./routes/auth') // this also sets up passport auth strategies
 const setupRouter = require('./routes/setup')
 
 const app = express()
@@ -35,7 +38,19 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+// set up session handling
+app.use(session({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: config.keys.session.cookieKeys
+}))
+
+// initialize passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+// set up routes
 app.use('/', indexRouter)
+app.use('/auth', authRouter)
 app.use('/api', apiRouter)
 app.use('/setup', setupRouter)
 

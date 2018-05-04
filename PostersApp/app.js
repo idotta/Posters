@@ -7,6 +7,7 @@ const logger = require('morgan')
 const mongoose = require('mongoose')
 const session = require('cookie-session')
 const passport = require('passport')
+const cors = require('cors')
 
 const config = require('./config')
 const indexRouter = require('./routes/index')
@@ -30,6 +31,9 @@ mongoose.connect(config.getDbConnectionString())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
+
+// Enable All CORS Requests
+app.use(cors())
 
 app.use(helmet())
 app.use(logger('dev'))

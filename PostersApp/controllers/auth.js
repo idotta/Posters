@@ -51,8 +51,6 @@ function setup () {
             })
         }
       })
-    // done()
-    // User.find({}).then(res => console.log(res))
   }))
 }
 

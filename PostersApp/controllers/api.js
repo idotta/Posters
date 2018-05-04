@@ -175,7 +175,20 @@ const api = {
       .then(({ subscriptions }) => {
         return Poster.find({ _id: { $in: subscriptions } }, 'username posts')
       })
-      .then(obj => res.send(obj))
+      .then(users => {
+        let posts = []
+        users.forEach(user => user.posts.forEach(post => {
+          posts.push({
+            username: user.username,
+            title: post.title,
+            body: post.body,
+            timestamp: post.timestamp
+          })
+        }))
+        posts.sort((a, b) => a.timestamp - b.timestamp)
+        return posts
+      })
+      .then(posts => res.send(posts))
       .catch(next)
   }
 }
